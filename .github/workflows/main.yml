@@ -17,7 +17,7 @@ jobs:
       - name: update html
         run: |
           if [ "${{ github.actor }}" == "kmn988" ]; then
-           sed -i '/<\/body>/i <p>Updated by Team Leader on '"$(date)"'</p>' index.html
+             sed -i '/<\/body>/i <p>Updated by Team Leader on '"$(date)"'</p>' index.html
           fi
 
       # Step 3: Update README
