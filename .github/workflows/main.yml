@@ -1,5 +1,9 @@
 name: Collaborative Workflow
 
+concurrency:
+  group: update-readme
+  cancel-in-progress: false
+
 on:
   push:
     branches:
@@ -7,7 +11,6 @@ on:
 
 jobs:
   update_html_and_readme:
-    if: false
     runs-on: ubuntu-latest
     steps:
       # Step 1: Checkout the repository
