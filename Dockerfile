@@ -14,7 +14,7 @@ RUN apt-get update && \
 COPY . /app
 
 # Ensure entrypoint.sh is executable
-RUN chmod +x /app/entrypoint.sh
+RUN chmod +x /app/.github/scripts/entrypoint.sh
 
 # Set entrypoint to run when container starts
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/app/.github/scripts/entrypoint.sh"]
