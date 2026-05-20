@@ -23,8 +23,6 @@ jobs:
       # Step 3: Update README
       - name: update README
         run: |
-          iconv -f UTF-16 -t UTF-8 README.md > README_temp.md
-          mv README_temp.md README.md
           echo "### Updated by ${{ github.actor }} on $(date '+%Y-%m-%d %H:%M:%S') [Commit: $(git rev-parse --short HEAD)]" >> README.md
 
       # Step 4: Commit changes back to the repo
