@@ -13,7 +13,7 @@ git config --global user.name "github-actions[bot]"
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
 # Add README.md to git, commit, and push the changes
-git pull origin main
 git add README.md
 git commit -m "Update README.md"
+git pull origin main
 git push
