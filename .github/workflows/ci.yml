@@ -1,9 +1,5 @@
 name: CI Workflow
 
-concurrency:
-  group: update-readme
-  cancel-in-progress: false
-
 on:
   push:
     branches:
