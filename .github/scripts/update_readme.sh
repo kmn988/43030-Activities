@@ -6,5 +6,5 @@ GITHUB_USER=$2
 TIMESTAMP=$(date)
 
 #Update README
-echo -e "\n[$GITHUB_USER - $FREQ_RESULT - $TIMESTAMP]" >> README.md
+echo -e "\n[$GITHUB_USER - $FREQ_RESULT - $TIMESTAMP]" >> /github/workspace/README.md
 
