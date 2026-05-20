@@ -8,23 +8,34 @@ on:
   push:
     branches:
       - main
-  workflow_call:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Build Docker image
-        run: |
-          docker build -t vowel-frequency-analyzer:latest .
+        run: docker build -t vowel-frequency-analyzer:latest .
 
       - name: Run Docker Container
         run: |
           docker run --rm \
+            -v ${{ github.workspace }}:/github/workspace \
             -e GITHUB_USER="${{ github.actor }}" \
             vowel-frequency-analyzer:latest
+
+      # Git operations are now HERE, under concurrency group protection
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "CI: Updated README for ${{ github.actor }}" || echo "No changes to commit"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git pull --rebase origin main
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
